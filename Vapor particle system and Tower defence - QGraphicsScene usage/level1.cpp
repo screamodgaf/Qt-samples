@@ -72,8 +72,10 @@ void Level1::advance()
         i->update();
         if(i->is_finished())
         {
-            this->removeItem(i);
-             v_particles.erase(std::remove(v_particles.begin(), v_particles.end(),
+            //this order is important:
+            this->removeItem(i); 
+            delete i;
+            v_particles.erase(std::remove(v_particles.begin(), v_particles.end(),
                                             i), v_particles.end());
         }
     }
